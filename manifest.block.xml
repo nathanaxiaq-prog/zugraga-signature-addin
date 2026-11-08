@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" xsi:type="MailApp">
+  <Id>60a0e63e-ea8a-44fd-84c4-36ce640417a4</Id>
+  <Version>1.1.0.0</Version>
+  <ProviderName>Żugraga</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Żugraga Operations Signature"/>
+  <Description DefaultValue="Inserts the approved Operations signature for operations@zugraga.mt and checks it at send on supported desktop and web Outlook. Mobile send is not checked."/>
+  <IconUrl DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/assets/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/assets/icon-128.png"/>
+  <SupportUrl DefaultValue="https://zugraga.mt/"/>
+  <AppDomains>
+    <AppDomain>https://nathanaxiaq-prog.github.io</AppDomain>
+    <AppDomain>https://zugraga.mt</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Mailbox"/>
+  </Hosts>
+  <Requirements>
+    <Sets>
+      <Set Name="Mailbox" MinVersion="1.5"/>
+    </Sets>
+  </Requirements>
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/commands.html"/>
+        <RequestedHeight>32</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+  <Permissions>ReadWriteItem</Permissions>
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
+  </Rule>
+  <DisableEntityHighlighting>false</DisableEntityHighlighting>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
+      <!-- Mailbox 1.5 is the manifest floor so Outlook mobile can load this add-in. setSignatureAsync and OnMessageFromChanged are checked at runtime. -->
+      <Requirements>
+        <bt:Sets DefaultMinVersion="1.5">
+          <bt:Set Name="Mailbox"/>
+        </bt:Sets>
+      </Requirements>
+      <Hosts>
+        <Host xsi:type="MailHost">
+          <Runtimes>
+            <Runtime resid="WebViewRuntime.Url">
+              <Override type="javascript" resid="JSRuntime.Url"/>
+            </Runtime>
+          </Runtimes>
+          <DesktopFormFactor>
+            <FunctionFile resid="Commands.Url"/>
+            <ExtensionPoint xsi:type="MessageComposeCommandSurface">
+              <OfficeTab id="TabDefault">
+                <Group id="zugragaOpsGroup">
+                  <Label resid="GroupLabel"/>
+                  <Control xsi:type="Button" id="reapplySignatureButton">
+                    <Label resid="Reapply.Label"/>
+                    <Supertip>
+                      <Title resid="Reapply.Label"/>
+                      <Description resid="Reapply.Tooltip"/>
+                    </Supertip>
+                    <Icon>
+                      <bt:Image size="16" resid="Icon.16x16"/>
+                      <bt:Image size="32" resid="Icon.32x32"/>
+                      <bt:Image size="80" resid="Icon.80x80"/>
+                    </Icon>
+                    <Action xsi:type="ExecuteFunction">
+                      <FunctionName>onManualApplyHandler</FunctionName>
+                    </Action>
+                  </Control>
+                </Group>
+              </OfficeTab>
+            </ExtensionPoint>
+            <ExtensionPoint xsi:type="LaunchEvent">
+      <!-- Block stops send, including when this add-in cannot load. Upload only after the PromptUser pilot has been checked on desktop and web. -->
+              <LaunchEvents>
+                <LaunchEvent Type="OnNewMessageCompose" FunctionName="onNewMessageComposeHandler"/>
+                <LaunchEvent Type="OnMessageFromChanged" FunctionName="onMessageFromChangedHandler"/>
+                <LaunchEvent Type="OnMessageSend" FunctionName="onMessageSendHandler" SendMode="Block"/>
+              </LaunchEvents>
+              <SourceLocation resid="WebViewRuntime.Url"/>
+            </ExtensionPoint>
+          </DesktopFormFactor>
+          <MobileFormFactor>
+            <ExtensionPoint xsi:type="LaunchEvent">
+              <LaunchEvents>
+                <LaunchEvent Type="OnNewMessageCompose" FunctionName="onNewMessageComposeHandler"/>
+                <LaunchEvent Type="OnMessageFromChanged" FunctionName="onMessageFromChangedHandler"/>
+              </LaunchEvents>
+              <SourceLocation resid="WebViewRuntime.Url"/>
+            </ExtensionPoint>
+          </MobileFormFactor>
+        </Host>
+      </Hosts>
+      <Resources>
+        <bt:Images>
+          <bt:Image id="Icon.16x16" DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/assets/icon-16.png"/>
+          <bt:Image id="Icon.32x32" DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/assets/icon-32.png"/>
+          <bt:Image id="Icon.80x80" DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/assets/icon-80.png"/>
+        </bt:Images>
+        <bt:Urls>
+          <bt:Url id="Commands.Url" DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/commands.html"/>
+          <bt:Url id="WebViewRuntime.Url" DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/commands.html"/>
+          <bt:Url id="JSRuntime.Url" DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/launchevent.js"/>
+        </bt:Urls>
+        <bt:ShortStrings>
+          <bt:String id="GroupLabel" DefaultValue="Żugraga"/>
+          <bt:String id="Reapply.Label" DefaultValue="Operations signature"/>
+        </bt:ShortStrings>
+        <bt:LongStrings>
+          <bt:String id="Reapply.Tooltip" DefaultValue="Inserts the approved signature when From is operations@zugraga.mt. Other senders are left unchanged."/>
+        </bt:LongStrings>
+      </Resources>
+    </VersionOverrides>
+  </VersionOverrides>
+</OfficeApp>
