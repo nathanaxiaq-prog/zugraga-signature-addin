@@ -1,43 +1,38 @@
 Zugraga Operations signature add-in — built output only
 =======================================================
 
-This folder is the public build output for a prospective GitHub Pages site:
+Version 1.2.0.0 PromptUser files are published beside the 1.1.0.0 files.
+The 1.1.0.0 page never called Office.onReady, so new Outlook could show the
+command banner without running the signature code.
+
+This folder is the public build output for:
 
   https://nathanaxiaq-prog.github.io/zugraga-signature-addin/
-
-That URL is not live until GitHub Pages is enabled on the public repository
-nathanaxiaq-prog/zugraga-signature-addin and these files are the repository root.
-Do not treat the manifest host as confirmed before commands.html answers there.
 
 There is no application source, test suite, or credential here.
 The signature HTML is the approved public Operations signature.
 
-Files Outlook loads, once Pages is serving this directory:
+Version 1.2.0.0 files:
+  runtime-1.2.0.html
+  launchevent-1.2.0.js
+  manifest.prompt.xml  (Version 1.2.0.0, SendMode PromptUser)
+
+Kept for rollback. These bytes are the previously published 1.1.0.0 assets:
   commands.html
   launchevent.js
-  assets/icon-16.png
-  assets/icon-32.png
-  assets/icon-64.png
-  assets/icon-80.png
-  assets/icon-128.png
-
-.nojekyll tells GitHub Pages to serve the files as they are.
-
-manifest.prompt.xml
-  Initial admin upload. SendMode is PromptUser. A failed or unreadable
-  Operations signature shows a dialog and the sender can choose Send Anyway.
-  office-addin-manifest validate accepts this file. It is still not deployed
-  until an admin accepts it in the Microsoft 365 admin center, and only for
-  operations@zugraga.mt.
 
 manifest.block.xml
-  Not the initial upload. SendMode is Block. Microsoft Marketplace validation
-  rejects Block. Official Smart Alerts guidance says Block can only be deployed
-  by an organization admin. The local store-acceptance check reports
-  "Block SendMode is not allowed" even though the XML schema parses. Do not
-  treat this file as deployable unless the admin center accepts this exact file.
-  Block also stops send when the add-in cannot load. It does not run on
-  Outlook for iOS or Android.
+  Left at the previously published 1.1.0.0 file. It was not replaced.
+  SendMode remains Block in that existing file. It is not activated.
+  Publishing these Pages files does not install either manifest.
 
-Assign either manifest only to operations@zugraga.mt. Putting these files on
-GitHub Pages does not install the add-in.
+manifest.prompt.xml
+  SendMode is PromptUser. A failed or unreadable Operations signature shows a
+  dialog and the sender can choose Send Anyway. This file is not installed
+  until an admin accepts it, and only for operations@zugraga.mt.
+
+Icons, preview.html, and signature-fragment.html are unchanged.
+.nojekyll tells GitHub Pages to serve the files as they are.
+
+Putting these files on GitHub Pages does not install the add-in, change a
+mailbox, or change a mail flow rule.
