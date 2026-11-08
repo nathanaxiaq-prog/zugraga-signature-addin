@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" xsi:type="MailApp">
   <Id>60a0e63e-ea8a-44fd-84c4-36ce640417a4</Id>
-  <Version>1.2.0.0</Version>
+  <Version>1.3.0.0</Version>
   <ProviderName>Żugraga</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Żugraga Operations Signature"/>
-  <Description DefaultValue="Inserts the approved Operations signature for operations@zugraga.mt and checks it at send on supported desktop and web Outlook. Mobile send is not checked."/>
+  <DisplayName DefaultValue="Żugraga Ops 1.3"/>
+  <Description DefaultValue="Diagnostic build for operations@zugraga.mt. Shows a short compose notice and inserts the approved signature only for that address."/>
   <IconUrl DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/assets/icon-64.png"/>
   <HighResolutionIconUrl DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/assets/icon-128.png"/>
   <SupportUrl DefaultValue="https://zugraga.mt/"/>
@@ -24,7 +24,7 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/runtime-1.2.0.html"/>
+        <SourceLocation DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/runtime-1.3.0.html"/>
         <RequestedHeight>32</RequestedHeight>
       </DesktopSettings>
     </Form>
@@ -100,13 +100,13 @@
           <bt:Image id="Icon.80x80" DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/assets/icon-80.png"/>
         </bt:Images>
         <bt:Urls>
-          <bt:Url id="Commands.Url" DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/runtime-1.2.0.html"/>
-          <bt:Url id="WebViewRuntime.Url" DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/runtime-1.2.0.html"/>
-          <bt:Url id="JSRuntime.Url" DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/launchevent-1.2.0.js"/>
+          <bt:Url id="Commands.Url" DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/runtime-1.3.0.html"/>
+          <bt:Url id="WebViewRuntime.Url" DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/runtime-1.3.0.html"/>
+          <bt:Url id="JSRuntime.Url" DefaultValue="https://nathanaxiaq-prog.github.io/zugraga-signature-addin/launchevent-1.3.0.js"/>
         </bt:Urls>
         <bt:ShortStrings>
           <bt:String id="GroupLabel" DefaultValue="Żugraga"/>
-          <bt:String id="Reapply.Label" DefaultValue="Operations signature"/>
+          <bt:String id="Reapply.Label" DefaultValue="Ops check 1.3"/>
         </bt:ShortStrings>
         <bt:LongStrings>
           <bt:String id="Reapply.Tooltip" DefaultValue="Inserts the approved signature when From is operations@zugraga.mt. Other senders are left unchanged."/>
