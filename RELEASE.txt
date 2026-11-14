@@ -1,9 +1,8 @@
-Zugraga Operations signature add-in — built output only
-=======================================================
+Zugraga Signatures — built output only
+=====================================
 
-Diagnostic candidate 1.3.0.0 is published beside the 1.1.0.0 and 1.2.0.0 files.
-The ribbon label in manifest.prompt.xml is Ops check 1.3. The display name is
-Żugraga Ops 1.3. A compose infobar starting with 1.3.0 means this script ran.
+Version 1.4.0.0 PromptUser files are published beside the 1.1.0.0, 1.2.0.0,
+and 1.3.0.0 files. Display name in manifest.prompt.xml is Żugraga Signatures.
 Putting these files on GitHub Pages does not install the add-in and is not an
 Outlook client test.
 
@@ -12,27 +11,35 @@ This folder is the public build output for:
   https://nathanaxiaq-prog.github.io/zugraga-signature-addin/
 
 There is no application source, test suite, or credential here.
-The signature HTML is the approved public Operations signature.
+The signature HTML is the approved public centre signature set.
 
-Version 1.3.0.0 files:
-  runtime-1.3.0.html
-  launchevent-1.3.0.js
-  manifest.prompt.xml  (Version 1.3.0.0, SendMode PromptUser, ReadWriteItem)
+Version 1.4.0.0 files:
+  runtime-1.4.0.html
+  launchevent-1.4.0.js
+  assets/fgura-banner.jpg
+  assets/ghaxaq-banner.jpg
+  assets/msida-banner.jpg
+  assets/stjulians-banner.jpg
+  assets/zebbug-banner.jpg
+  assets/zejtun-banner.jpg
+  manifest.prompt.xml  (Version 1.4.0.0, SendMode PromptUser, ReadWriteItem)
 
 Kept for rollback:
+  runtime-1.3.0.html
+  launchevent-1.3.0.js
   runtime-1.2.0.html
   launchevent-1.2.0.js
   commands.html       (1.1.0.0 runtime)
   launchevent.js      (1.1.0.0 script)
 
 manifest.block.xml
-  Left at the previously published 1.1.0.0 file. The 1.3.0.0 Block manifest
-  was not published. The existing Block file is not activated.
+  Left at the previously published 1.1.0.0 file. No 1.4 Block manifest was
+  in this release. The existing Block file is not activated.
 
 manifest.prompt.xml
   SendMode is PromptUser. Triggers remain OnNewMessageCompose,
-  OnMessageFromChanged, and OnMessageSend. This file is not installed until
-  an admin accepts it, and only for operations@zugraga.mt.
+  OnMessageFromChanged, and OnMessageSend. Publishing this file does not
+  install the add-in.
 
 Icons, preview.html, and signature-fragment.html are unchanged.
 .nojekyll tells GitHub Pages to serve the files as they are.
